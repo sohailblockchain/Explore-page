@@ -1,888 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Muslim Chain Explorer — Contract Details</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Profile Creation for Data Scientists - Lecture 29</title>
+
 <style>
-  :root {
-    /* Islamic green palette — deep emerald, jade, gold accents */
-    --bg-0: #0a1410;
-    --bg-1: #0f1d18;
-    --bg-2: #132821;
-    --bg-3: #1a352c;
-    --line: #204538;
-    --line-soft: #17302807;
-    --green-900: #0b3b2c;
-    --green-700: #116b4e;
-    --green-500: #1a8f68;
-    --green-400: #22b37f;
-    --green-300: #5fd4a4;
-    --mint: #9af3c8;
-    --gold: #d4a84b;
-    --gold-soft: #e7c67a;
-    --cream: #f5ead0;
-    --ink: #e8f3ec;
-    --ink-dim: #9cb8aa;
-    --ink-mute: #6a8778;
-    --danger: #e47171;
-    --shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 20px 40px -20px rgba(0,0,0,.6);
-  }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg-0); color: var(--ink); font-family: 'Inter Tight', sans-serif; -webkit-font-smoothing: antialiased; }
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#333;
+    padding:20px;
+}
 
-  body {
-    background:
-      radial-gradient(1200px 600px at 85% -10%, rgba(34, 179, 127, 0.08), transparent 60%),
-      radial-gradient(900px 500px at -10% 40%, rgba(212, 168, 75, 0.04), transparent 60%),
-      var(--bg-0);
-    min-height: 100vh;
-  }
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,0.2);
+}
 
-  /* Geometric Islamic pattern overlay — subtle */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><path d='M30 0 L60 30 L30 60 L0 30 Z M30 15 L45 30 L30 45 L15 30 Z' fill='none' stroke='%2322b37f' stroke-width='0.4' opacity='0.25'/></svg>");
-    pointer-events: none;
-    opacity: 0.15;
-    z-index: 0;
-  }
+header{
+    background:#0a66c2;
+    color:#fff;
+    text-align:center;
+    padding:40px;
+}
 
-  a { color: var(--green-300); text-decoration: none; }
-  a:hover { color: var(--mint); }
+header h1{
+    font-size:2.2em;
+    margin-bottom:10px;
+}
 
-  /* ---------- HEADER ---------- */
-  .topbar {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(12px) saturate(1.2);
-    background: linear-gradient(180deg, rgba(10,20,16,.92), rgba(10,20,16,.7));
-    border-bottom: 1px solid var(--line);
-  }
-  .topbar-inner {
-    max-width: 1320px; margin: 0 auto;
-    padding: 14px 28px;
-    display: flex; align-items: center; gap: 28px;
-  }
-  .logo {
-    display: flex; align-items: center; gap: 12px;
-    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
-    letter-spacing: -0.01em;
-  }
-  .logo-mark {
-    width: 34px; height: 34px;
-    background: linear-gradient(135deg, var(--green-500), var(--green-700));
-    border: 1px solid var(--green-400);
-    border-radius: 8px;
-    display: grid; place-items: center;
-    box-shadow: 0 4px 12px rgba(26,143,104,.4), 0 0 0 1px rgba(255,255,255,.04) inset;
-    position: relative;
-    overflow: hidden;
-  }
-  .logo-mark::after {
-    content: ''; position: absolute; inset: 0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5ead0' stroke-width='1.5'><path d='M12 2 L14 8 L20 8 L15 12 L17 18 L12 14 L7 18 L9 12 L4 8 L10 8 Z'/></svg>") center/60% no-repeat;
-    opacity: .9;
-  }
-  .logo-text { line-height: 1; }
-  .logo-text small { display: block; font-family: 'Amiri', serif; color: var(--gold-soft); font-size: 12px; font-weight: 400; letter-spacing: .02em; }
+header p{
+    opacity:0.9;
+}
 
-  .search-wrap {
-    flex: 1; max-width: 640px; position: relative;
-  }
-  .search-wrap input {
-    width: 100%;
-    background: var(--bg-2);
-    color: var(--ink);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 11px 14px 11px 40px;
-    font: 500 13px 'JetBrains Mono', monospace;
-    outline: none;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .search-wrap input:focus { border-color: var(--green-400); box-shadow: 0 0 0 3px rgba(34,179,127,.15); }
-  .search-wrap::before {
-    content: ''; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-    width: 16px; height: 16px;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239cb8aa' stroke-width='2'><circle cx='11' cy='11' r='7'/><path d='m20 20-3-3'/></svg>") no-repeat center/contain;
-  }
+.content{
+    padding:40px;
+}
 
-  .nav { display: flex; gap: 6px; }
-  .nav a {
-    padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 500;
-    color: var(--ink-dim); transition: all .15s;
-  }
-  .nav a:hover, .nav a.active { color: var(--mint); background: rgba(34,179,127,.08); }
+section{
+    margin-bottom:40px;
+}
 
-  /* ---------- CONTAINER ---------- */
-  .container {
-    max-width: 1320px; margin: 0 auto; padding: 32px 28px 80px;
-    position: relative; z-index: 1;
-  }
+h2{
+    color:#0a66c2;
+    margin-bottom:15px;
+    border-bottom:3px solid #0a66c2;
+    padding-bottom:5px;
+}
 
-  /* ---------- BREADCRUMB + TITLE ---------- */
-  .breadcrumb {
-    font-size: 12px; color: var(--ink-mute); letter-spacing: .05em; text-transform: uppercase;
-    margin-bottom: 8px; display: flex; gap: 8px; align-items: center;
-  }
-  .breadcrumb span { color: var(--ink-dim); }
-  .page-title {
-    font-family: 'Fraunces', serif;
-    font-size: 32px; font-weight: 500;
-    letter-spacing: -0.02em;
-    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
-    margin: 0 0 4px;
-  }
-  .page-title .tag {
-    font-family: 'Inter Tight'; font-size: 11px; font-weight: 600;
-    padding: 4px 10px; border-radius: 999px;
-    background: rgba(34,179,127,.12); color: var(--green-300);
-    border: 1px solid rgba(34,179,127,.3);
-    letter-spacing: .05em; text-transform: uppercase;
-    transform: translateY(-4px);
-  }
-  .bismillah {
-    font-family: 'Amiri', serif; color: var(--gold-soft); font-size: 14px; font-weight: 400;
-    margin: 4px 0 24px; letter-spacing: .02em;
-  }
+h3{
+    margin:15px 0;
+}
 
-  /* ---------- CONTRACT HEADER CARD ---------- */
-  .contract-header {
-    background: linear-gradient(135deg, var(--bg-2), var(--bg-1));
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 24px;
-    display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
-    position: relative; overflow: hidden;
-    box-shadow: var(--shadow);
-  }
-  .contract-header::before {
-    content: ''; position: absolute; right: -80px; top: -80px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(34,179,127,.15), transparent 60%);
-    pointer-events: none;
-  }
+ul{
+    margin-left:20px;
+}
 
-  .identicon {
-    width: 64px; height: 64px; border-radius: 14px;
-    background: conic-gradient(from 45deg, var(--green-500), var(--gold), var(--green-700), var(--green-400), var(--green-500));
-    border: 2px solid var(--line);
-    position: relative; overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,.4);
-  }
-  .identicon::after {
-    content: ''; position: absolute; inset: 6px;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a1410' stroke-width='1.5'><path d='M12 2 L14 9 L22 9 L16 14 L18 22 L12 17 L6 22 L8 14 L2 9 L10 9 Z'/></svg>") center/contain no-repeat;
-    opacity: .4;
-  }
+.card{
+    background:#f9f9f9;
+    padding:20px;
+    border-radius:10px;
+    margin:10px 0;
+}
 
-  .contract-meta h2 {
-    margin: 0 0 8px;
-    font-family: 'Fraunces', serif; font-weight: 500; font-size: 20px;
-    letter-spacing: -0.01em;
-  }
-  .addr-row {
-    display: flex; align-items: center; gap: 8px;
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    color: var(--ink-dim); flex-wrap: wrap;
-  }
-  .addr-row .copy-btn {
-    background: none; border: 1px solid var(--line); color: var(--ink-dim);
-    width: 26px; height: 26px; border-radius: 6px; cursor: pointer;
-    display: grid; place-items: center; transition: all .15s;
-  }
-  .addr-row .copy-btn:hover { color: var(--mint); border-color: var(--green-400); background: rgba(34,179,127,.08); }
-  .verified-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 4px 10px; border-radius: 999px;
-    background: rgba(212,168,75,.12);
-    color: var(--gold-soft);
-    border: 1px solid rgba(212,168,75,.3);
-    font-size: 11px; font-weight: 600; letter-spacing: .03em;
-  }
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
 
-  .header-actions { display: flex; gap: 8px; }
-  .btn {
-    padding: 9px 14px; border-radius: 9px;
-    font-size: 13px; font-weight: 500; font-family: inherit;
-    border: 1px solid var(--line); background: var(--bg-3); color: var(--ink);
-    cursor: pointer; transition: all .15s;
-  }
-  .btn:hover { border-color: var(--green-400); background: rgba(34,179,127,.08); color: var(--mint); }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--green-500), var(--green-700));
-    border-color: var(--green-400); color: var(--cream);
-    box-shadow: 0 4px 12px rgba(26,143,104,.3);
-  }
-  .btn-primary:hover { background: linear-gradient(135deg, var(--green-400), var(--green-500)); color: white; }
+.highlight{
+    background:#e3f2fd;
+    padding:15px;
+    border-left:5px solid #2196f3;
+    margin:20px 0;
+}
 
-  /* ---------- STAT CARDS ---------- */
-  .stats-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
-    margin-top: 20px;
-  }
-  .stat-card {
-    background: var(--bg-1);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px;
-    position: relative; overflow: hidden;
-  }
-  .stat-card::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-    background: linear-gradient(180deg, var(--green-400), transparent);
-  }
-  .stat-label { font-size: 11px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
-  .stat-value { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
-  .stat-value .unit { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute); font-weight: 400; margin-left: 4px; }
-  .stat-sub { font-size: 11px; color: var(--ink-mute); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
-
-  /* ---------- TABS ---------- */
-  .tabs {
-    display: flex; gap: 2px; margin-top: 32px;
-    border-bottom: 1px solid var(--line);
-    overflow-x: auto;
-  }
-  .tab {
-    padding: 12px 18px;
-    font-size: 13px; font-weight: 500; color: var(--ink-dim);
-    background: none; border: none; cursor: pointer;
-    border-bottom: 2px solid transparent;
-    position: relative; white-space: nowrap;
-    font-family: inherit;
-    transition: color .15s;
-  }
-  .tab:hover { color: var(--ink); }
-  .tab.active { color: var(--mint); border-bottom-color: var(--green-400); }
-  .tab .count {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    background: var(--bg-3); color: var(--ink-dim);
-    padding: 2px 7px; border-radius: 4px; margin-left: 6px;
-  }
-  .tab.active .count { background: rgba(34,179,127,.15); color: var(--green-300); }
-
-  /* ---------- TAB PANELS ---------- */
-  .panel { display: none; padding-top: 24px; }
-  .panel.active { display: block; animation: fadeIn .3s; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
-  /* ---------- INFO PANEL ---------- */
-  .info-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-  }
-  .info-card {
-    background: var(--bg-1); border: 1px solid var(--line);
-    border-radius: 12px; padding: 20px 22px;
-  }
-  .info-card h3 {
-    margin: 0 0 16px;
-    font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500;
-    color: var(--gold-soft); letter-spacing: .02em;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .info-card h3::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
-  }
-  .info-row {
-    display: grid; grid-template-columns: 140px 1fr; gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px dashed var(--line-soft);
-    border-bottom-color: rgba(32,69,56,.4);
-    font-size: 13px;
-  }
-  .info-row:last-child { border-bottom: none; }
-  .info-row .k { color: var(--ink-mute); }
-  .info-row .v { color: var(--ink); font-family: 'JetBrains Mono', monospace; word-break: break-all; }
-
-  /* ---------- TABLES ---------- */
-  .table-wrap {
-    background: var(--bg-1); border: 1px solid var(--line);
-    border-radius: 12px; overflow: hidden;
-  }
-  .table-head {
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px; color: var(--ink-dim);
-  }
-  table { width: 100%; border-collapse: collapse; }
-  thead th {
-    text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
-    color: var(--ink-mute); padding: 12px 20px;
-    background: var(--bg-2);
-    border-bottom: 1px solid var(--line);
-  }
-  tbody td {
-    padding: 14px 20px; font-size: 13px; border-bottom: 1px solid rgba(32,69,56,.4);
-    font-family: 'JetBrains Mono', monospace;
-  }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: rgba(34,179,127,.03); }
-
-  .hash { color: var(--green-300); font-weight: 500; }
-  .method-pill {
-    display: inline-block; padding: 3px 9px; border-radius: 5px;
-    background: var(--bg-3); color: var(--mint);
-    font-size: 11px; font-weight: 500;
-    border: 1px solid var(--line);
-  }
-  .status {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 11px; font-weight: 500;
-  }
-  .status.ok { color: var(--green-300); }
-  .status.ok::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green-400); box-shadow: 0 0 8px var(--green-400); }
-  .status.fail { color: var(--danger); }
-  .status.fail::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--danger); }
-
-  .dir {
-    display: inline-block; padding: 2px 7px; border-radius: 4px;
-    font-size: 10px; font-weight: 600; text-transform: uppercase;
-  }
-  .dir.in { background: rgba(34,179,127,.15); color: var(--green-300); }
-  .dir.out { background: rgba(228,113,113,.12); color: var(--danger); }
-
-  .empty-state {
-    padding: 60px 20px; text-align: center; color: var(--ink-mute);
-    font-size: 14px;
-  }
-
-  /* ---------- FUNCTIONS ---------- */
-  .func-list { display: flex; flex-direction: column; gap: 10px; }
-  .func-item {
-    background: var(--bg-1); border: 1px solid var(--line);
-    border-radius: 10px; overflow: hidden;
-  }
-  .func-header {
-    padding: 14px 18px; display: flex; align-items: center; gap: 12px;
-    cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    transition: background .15s;
-  }
-  .func-header:hover { background: var(--bg-2); }
-  .func-header .idx { color: var(--ink-mute); font-size: 11px; }
-  .func-header .fname { color: var(--mint); font-weight: 500; }
-  .func-header .ftype {
-    margin-left: auto; font-size: 10px; padding: 2px 7px; border-radius: 4px;
-    text-transform: uppercase; letter-spacing: .05em;
-  }
-  .func-header .ftype.read { background: rgba(34,179,127,.12); color: var(--green-300); border: 1px solid rgba(34,179,127,.3); }
-  .func-header .ftype.write { background: rgba(212,168,75,.12); color: var(--gold-soft); border: 1px solid rgba(212,168,75,.3); }
-  .func-body {
-    display: none; padding: 16px 18px; border-top: 1px solid var(--line);
-    background: var(--bg-0);
-  }
-  .func-item.open .func-body { display: block; }
-  .func-body label {
-    display: block; font-size: 11px; color: var(--ink-mute);
-    text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px;
-  }
-  .func-body input {
-    width: 100%; background: var(--bg-2); border: 1px solid var(--line);
-    color: var(--ink); padding: 9px 12px; border-radius: 7px;
-    font: 500 12px 'JetBrains Mono', monospace; margin-bottom: 12px; outline: none;
-  }
-  .func-body input:focus { border-color: var(--green-400); }
-
-  /* ---------- SOURCE CODE ---------- */
-  .code-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 18px; background: var(--bg-2);
-    border: 1px solid var(--line); border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    font-size: 12px; color: var(--ink-dim);
-  }
-  .code-block {
-    background: var(--bg-0); border: 1px solid var(--line);
-    border-top: none; border-radius: 0 0 10px 10px;
-    padding: 18px 20px; margin: 0;
-    font: 400 12.5px 'JetBrains Mono', monospace;
-    color: var(--ink); line-height: 1.7;
-    overflow-x: auto; max-height: 520px;
-  }
-  .code-block .kw { color: var(--gold-soft); }
-  .code-block .str { color: var(--green-300); }
-  .code-block .com { color: var(--ink-mute); font-style: italic; }
-  .code-block .num { color: var(--gold); }
-
-  /* ---------- LOGS ---------- */
-  .log-item {
-    background: var(--bg-1); border: 1px solid var(--line);
-    border-radius: 10px; padding: 16px 18px; margin-bottom: 10px;
-    font-family: 'JetBrains Mono', monospace; font-size: 12px;
-  }
-  .log-head { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 11px; color: var(--ink-mute); }
-  .log-name { color: var(--mint); font-weight: 500; font-size: 13px; }
-  .log-data { color: var(--ink-dim); padding-left: 14px; border-left: 2px solid var(--line); }
-  .log-data div { padding: 2px 0; }
-  .log-data .k { color: var(--gold-soft); }
-
-  /* ---------- LOADING STATE ---------- */
-  .loading { display: flex; align-items: center; gap: 10px; color: var(--ink-mute); font-size: 13px; padding: 20px; justify-content: center; }
-  .loading::before {
-    content: ''; width: 14px; height: 14px; border-radius: 50%;
-    border: 2px solid var(--line); border-top-color: var(--green-400);
-    animation: spin .8s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ---------- FOOTER ---------- */
-  .site-footer {
-    margin-top: 60px;
-    background: linear-gradient(180deg, var(--green-700), var(--green-500));
-    border-top: 1px solid var(--green-400);
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 -10px 30px -10px rgba(26,143,104,.3);
-  }
-  .site-footer-inner {
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 22px 28px;
-    text-align: center;
-    color: var(--cream);
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: .02em;
-  }
-  .site-footer-inner .sep {
-    opacity: .6;
-    margin: 0 10px;
-  }
-  .site-footer-inner .brand {
-    color: #fff;
-    font-weight: 500;
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 900px) {
-    .topbar-inner { flex-wrap: wrap; gap: 12px; }
-    .nav { order: 3; width: 100%; overflow-x: auto; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .info-grid { grid-template-columns: 1fr; }
-    .contract-header { grid-template-columns: auto 1fr; }
-    .header-actions { grid-column: 1 / -1; }
-  }
-  @media (max-width: 560px) {
-    .stats-grid { grid-template-columns: 1fr; }
-    .container { padding: 20px 16px 60px; }
-    .page-title { font-size: 24px; }
-  }
+.footer{
+    background:#2c3e50;
+    color:#fff;
+    text-align:center;
+    padding:30px;
+}
 </style>
 </head>
+
 <body>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a href="/" class="logo">
-      <div class="logo-mark"></div>
-      <div class="logo-text">
-        Muslim Chain
-        <small>سلسلة الكتل الإسلامية</small>
-      </div>
-    </a>
-    <div class="search-wrap">
-      <input id="globalSearch" type="text" placeholder="Search by address / txn hash / block / token …" />
-    </div>
-    <nav class="nav">
-      <a href="#">Blocks</a>
-      <a href="#">Txns</a>
-      <a href="#" class="active">Contracts</a>
-      <a href="#">Tokens</a>
-    </nav>
-  </div>
+<div class="container">
+
+<header>
+<h1>📊 LinkedIn Profile Creation for Data Scientists</h1>
+<p>Build Your Professional Data Science Identity</p>
+<p><strong>Lecture 29 | Practical Workshop</strong></p>
 </header>
 
-<main class="container">
+<div class="content">
 
-  <!-- Breadcrumb & Title -->
-  <div class="breadcrumb">
-    <a href="#">Explorer</a> <span>›</span> <a href="#">Contracts</a> <span>›</span> <span id="bc-addr">0x…</span>
-  </div>
-  <h1 class="page-title">
-    Contract Details
-    <span class="tag" id="chainTag">Mainnet</span>
-  </h1>
-  <!-- <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div> -->
+<!-- SECTION 1 -->
+<section>
+<h2>1. Why LinkedIn Matters for Data Scientists</h2>
 
-  <!-- Contract header -->
-  <section class="contract-header">
-    <div class="identicon" id="identicon"></div>
-    <div class="contract-meta">
-      <h2 id="contractName">Loading…</h2>
-      <div class="addr-row">
-        <span id="contractAddr" class="hash">—</span>
-        <button class="copy-btn" data-copy="contractAddr" title="Copy address">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </button>
-        <span class="verified-badge" id="verifiedBadge">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          Verified
-        </span>
-      </div>
-    </div>
-    <div class="header-actions">
-      <button class="btn">Follow</button>
-      <button class="btn btn-primary">Interact</button>
-    </div>
-  </section>
+<div class="highlight">
+<ul>
+<li>900+ million professionals worldwide</li>
+<li>87% recruiters use LinkedIn</li>
+<li>High demand for AI & Data Science roles</li>
+</ul>
+</div>
 
-  <!-- Stats -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-label">Balance</div>
-      <div class="stat-value" id="statBalance">—<span class="unit">MSC</span></div>
-      <div class="stat-sub" id="statBalanceUsd">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Transactions</div>
-      <div class="stat-value" id="statTxCount">—</div>
-      <div class="stat-sub">All time</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Token Holders</div>
-      <div class="stat-value" id="statHolders">—</div>
-      <div class="stat-sub">Unique addresses</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Created</div>
-      <div class="stat-value" id="statCreated" style="font-size:16px;">—</div>
-      <div class="stat-sub" id="statCreatedAgo">—</div>
-    </div>
-  </div>
+<div class="grid">
 
-  <!-- Tabs -->
-  <nav class="tabs" id="tabs">
-    <button class="tab active" data-panel="overview">Overview</button>
-    <button class="tab" data-panel="transactions">Transactions <span class="count" id="txCount">0</span></button>
-    <button class="tab" data-panel="holders">Token Transfers <span class="count" id="holderCount">0</span></button>
-    <button class="tab" data-panel="contract">Read / Write Contract</button>
-    <button class="tab" data-panel="source">Source Code</button>
-    <button class="tab" data-panel="events">Events</button>
-  </nav>
+<div class="card">
+<h3>🎯 Job Opportunities</h3>
+<p>Recruiters search for Python, ML, and AI skills.</p>
+</div>
 
-  <!-- OVERVIEW PANEL -->
-  <section class="panel active" id="panel-overview">
-    <div class="info-grid">
-      <div class="info-card">
-        <h3>Contract Information</h3>
-        <div class="info-row"><span class="k">Contract Name</span><span class="v" id="iName">—</span></div>
-        <div class="info-row"><span class="k">Creator</span><span class="v"><a href="#" id="iCreator">—</a></span></div>
-        <div class="info-row"><span class="k">Creation Txn</span><span class="v"><a href="#" class="hash" id="iCreationTx">—</a></span></div>
-        <div class="info-row"><span class="k">Compiler</span><span class="v" id="iCompiler">—</span></div>
-        <div class="info-row"><span class="k">Optimization</span><span class="v" id="iOptimization">—</span></div>
-        <div class="info-row"><span class="k">License</span><span class="v" id="iLicense">—</span></div>
-      </div>
-      <div class="info-card">
-        <h3>Token Details</h3>
-        <div class="info-row"><span class="k">Standard</span><span class="v" id="tStandard">—</span></div>
-        <div class="info-row"><span class="k">Symbol</span><span class="v" id="tSymbol">—</span></div>
-        <div class="info-row"><span class="k">Decimals</span><span class="v" id="tDecimals">—</span></div>
-        <div class="info-row"><span class="k">Total Supply</span><span class="v" id="tSupply">—</span></div>
-        <div class="info-row"><span class="k">Circulating</span><span class="v" id="tCirculating">—</span></div>
-        <div class="info-row"><span class="k">Market Cap</span><span class="v" id="tMcap">—</span></div>
-      </div>
-    </div>
-  </section>
+<div class="card">
+<h3>📊 Portfolio Showcase</h3>
+<p>Display ML models, dashboards, and analytics projects.</p>
+</div>
 
-  <!-- TRANSACTIONS -->
-  <section class="panel" id="panel-transactions">
-    <div class="table-wrap">
-      <div class="table-head">
-        <span>Latest transactions involving this contract</span>
-        <span id="txPaging">—</span>
-      </div>
-      <table>
-        <thead><tr><th>Txn Hash</th><th>Method</th><th>Block</th><th>Age</th><th>From</th><th></th><th>To</th><th>Value</th><th>Status</th></tr></thead>
-        <tbody id="txBody"><tr><td colspan="9"><div class="loading">Loading transactions</div></td></tr></tbody>
-      </table>
-    </div>
-  </section>
+<div class="card">
+<h3>🌐 Professional Network</h3>
+<p>Connect with Data Scientists, Analysts, and AI Engineers.</p>
+</div>
 
-  <!-- TOKEN TRANSFERS / HOLDERS -->
-  <section class="panel" id="panel-holders">
-    <div class="table-wrap">
-      <div class="table-head"><span>Token transfers</span></div>
-      <table>
-        <thead><tr><th>Txn Hash</th><th>Age</th><th>From</th><th></th><th>To</th><th>Amount</th><th>Token</th></tr></thead>
-        <tbody id="holderBody"><tr><td colspan="7"><div class="loading">Loading transfers</div></td></tr></tbody>
-      </table>
-    </div>
-  </section>
+<div class="card">
+<h3>📚 Learning & Growth</h3>
+<p>Stay updated with AI, Big Data, and Machine Learning trends.</p>
+</div>
 
-  <!-- READ/WRITE CONTRACT -->
-  <section class="panel" id="panel-contract">
-    <div class="info-card" style="margin-bottom:16px;">
-      <h3>Read &amp; Write Functions</h3>
-      <div class="func-list" id="funcList"><div class="loading">Loading ABI</div></div>
-    </div>
-  </section>
+</div>
+</section>
 
-  <!-- SOURCE -->
-  <section class="panel" id="panel-source">
-    <div class="code-header">
-      <span id="sourceFilename">Contract.sol</span>
-      <span><span id="sourceCompiler">—</span> · <button class="btn" style="padding:4px 10px;font-size:11px;" id="copySourceBtn">Copy</button></span>
-    </div>
-    <pre class="code-block" id="sourceCode">Loading source …</pre>
-  </section>
+<!-- SECTION 2 -->
+<section>
+<h2>2. Creating Your LinkedIn Profile</h2>
 
-  <!-- EVENTS / LOGS -->
-  <section class="panel" id="panel-events">
-    <div id="logList"><div class="loading">Loading events</div></div>
-  </section>
-</main>
+<h3>Headline</h3>
+<p><strong>Formula:</strong> Role | Skills | Value</p>
 
-<footer class="site-footer">
-  <div class="site-footer-inner">
-    © 2000–<span id="footerYear">2025</span> <span class="sep">|</span> All rights reserved <span class="sep">|</span> <span class="brand">Muslim Logs ecosystem</span>
-  </div>
-</footer>
+<div class="card">
+<p><b>Example:</b><br>
+Data Scientist | Python, Machine Learning, SQL | Building Data-Driven Solutions</p>
+</div>
 
-<script>
-/* ============================================================
-   MUSLIM CHAIN EXPLORER — CONTRACT DETAILS
-   ------------------------------------------------------------
-   Wire these endpoints to your backend.  The file is set up so
-   every tab pulls from its own URL — swap BASE and the paths.
-   ============================================================ */
+<h3>About Section</h3>
+<div class="card">
+<p>
+I am a passionate Data Scientist with strong skills in Python, Machine Learning, and Data Analysis. 
+I specialize in transforming raw data into actionable insights and building predictive models to solve real-world problems.
+</p>
+</div>
 
-const CONFIG = {
-  BASE: 'https://api.muslimlogs.com',
-  endpoints: {
-    contract:     (addr) => `/api/v1/contract/${addr}`,
-    transactions: (addr, page=1) => `/api/v1/contract/${addr}/transactions?page=${page}&limit=25`,
-    transfers:    (addr, page=1) => `/api/v1/contract/${addr}/token-transfers?page=${page}&limit=25`,
-    abi:          (addr) => `/api/v1/contract/${addr}/abi`,
-    source:       (addr) => `/api/v1/contract/${addr}/source`,
-    events:       (addr, page=1) => `/api/v1/contract/${addr}/events?page=${page}&limit=25`
-  }
-};
+</section>
 
-/* ---------- Resolve the address from ?address= or default ---------- */
-const params = new URLSearchParams(location.search);
-const ADDRESS = params.get('address') || '0x0000000000000000000000000000000000000000';
+<!-- SECTION 3 -->
+<section>
+<h2>3. Skills for Data Scientists</h2>
 
-/* ---------- Helpers ---------- */
-const $ = (id) => document.getElementById(id);
-const shorten = (a='') => a.length > 16 ? a.slice(0,8) + '…' + a.slice(-6) : a;
-const timeAgo = (ts) => {
-  if (!ts) return '—';
-  const diff = Math.floor((Date.now() - new Date(ts).getTime()) / 1000);
-  if (diff < 60) return diff + 's ago';
-  if (diff < 3600) return Math.floor(diff/60) + 'm ago';
-  if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
-  return Math.floor(diff/86400) + 'd ago';
-};
-const fmtNum = (n, d=4) => n == null ? '—' : Number(n).toLocaleString('en-US', {maximumFractionDigits:d});
+<div class="grid">
 
-async function api(path) {
-  try {
-    const r = await fetch(CONFIG.BASE + path, { headers: { 'Accept': 'application/json' } });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    return await r.json();
-  } catch (e) {
-    console.warn('API error', path, e);
-    return null;
-  }
-}
+<div class="card">
+<h3>📊 Data Science</h3>
+<ul>
+<li>Python</li>
+<li>Pandas</li>
+<li>NumPy</li>
+<li>EDA</li>
+<li>Statistics</li>
+</ul>
+</div>
 
-/* ---------- Tabs ---------- */
-const loaded = { transactions:false, holders:false, contract:false, source:false, events:false };
-document.querySelectorAll('.tab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    const p = t.dataset.panel;
-    $('panel-' + p).classList.add('active');
-    if (p === 'transactions' && !loaded.transactions) loadTransactions();
-    if (p === 'holders' && !loaded.holders) loadTransfers();
-    if (p === 'contract' && !loaded.contract) loadAbi();
-    if (p === 'source' && !loaded.source) loadSource();
-    if (p === 'events' && !loaded.events) loadEvents();
-  });
-});
+<div class="card">
+<h3>🤖 Machine Learning</h3>
+<ul>
+<li>Scikit-learn</li>
+<li>Regression</li>
+<li>Classification</li>
+<li>Clustering</li>
+<li>Model Evaluation</li>
+</ul>
+</div>
 
-/* ---------- Copy buttons ---------- */
-document.querySelectorAll('.copy-btn').forEach(b => {
-  b.addEventListener('click', async () => {
-    const id = b.dataset.copy;
-    const val = $(id).textContent;
-    try { await navigator.clipboard.writeText(val); b.style.color = 'var(--mint)'; setTimeout(()=>b.style.color='', 1000); } catch {}
-  });
-});
+<div class="card">
+<h3>🛠 Tools</h3>
+<ul>
+<li>Jupyter Notebook</li>
+<li>Google Colab</li>
+<li>Kaggle</li>
+<li>SQL</li>
+<li>Power BI / Tableau</li>
+</ul>
+</div>
 
-$('copySourceBtn')?.addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText($('sourceCode').innerText); } catch {}
-});
+</div>
+</section>
 
-/* ---------- Global search ---------- */
-$('globalSearch').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const q = e.target.value.trim();
-    if (q.startsWith('0x') && q.length >= 40) location.search = '?address=' + q;
-  }
-});
+<!-- SECTION 4 -->
+<section>
+<h2>4. Showcasing Data Science Projects</h2>
 
-/* ============================================================
-   LOADERS
-   ============================================================ */
+<div class="card">
+<h3>Example Project: Customer Churn Prediction</h3>
+<ul>
+<li>Performed Data Cleaning & EDA using Pandas</li>
+<li>Built ML models using Logistic Regression</li>
+<li>Achieved 85% prediction accuracy</li>
+<li>Used dataset from Kaggle</li>
+</ul>
+</div>
 
-async function loadContract() {
-  $('contractAddr').textContent = ADDRESS;
-  $('bc-addr').textContent = shorten(ADDRESS);
-  document.title = 'Contract ' + shorten(ADDRESS) + ' — Muslim Chain';
+</section>
 
-  const d = await api(CONFIG.endpoints.contract(ADDRESS));
-  if (!d) return renderContract({});          // still renders placeholders
-  renderContract(d);
-}
+<!-- SECTION 5 -->
+<section>
+<h2>5. GitHub & Kaggle Integration</h2>
 
-function renderContract(d) {
-  $('contractName').textContent   = d.name || 'Unnamed Contract';
-  $('statBalance').innerHTML      = (d.balance != null ? fmtNum(d.balance) : '—') + '<span class="unit">MSC</span>';
-  $('statBalanceUsd').textContent = d.balanceUsd != null ? '$' + fmtNum(d.balanceUsd, 2) : '—';
-  $('statTxCount').textContent    = d.txCount != null ? fmtNum(d.txCount, 0) : '—';
-  $('statHolders').textContent    = d.holders != null ? fmtNum(d.holders, 0) : '—';
-  $('statCreated').textContent    = d.createdAt ? new Date(d.createdAt).toLocaleDateString('en-GB', {year:'numeric', month:'short', day:'numeric'}) : '—';
-  $('statCreatedAgo').textContent = timeAgo(d.createdAt);
+<ul>
+<li>Upload ML projects on GitHub</li>
+<li>Share Kaggle notebooks & competitions</li>
+<li>Add links in LinkedIn Featured section</li>
+<li>Maintain clean README files</li>
+</ul>
 
-  $('iName').textContent          = d.name || '—';
-  $('iCreator').textContent       = d.creator ? shorten(d.creator) : '—';
-  $('iCreator').href              = d.creator ? '?address=' + d.creator : '#';
-  $('iCreationTx').textContent    = d.creationTx ? shorten(d.creationTx) : '—';
-  $('iCompiler').textContent      = d.compiler || '—';
-  $('iOptimization').textContent  = d.optimization ? `Enabled (${d.optimizationRuns || '—'} runs)` : 'Disabled';
-  $('iLicense').textContent       = d.license || '—';
+</section>
 
-  $('tStandard').textContent      = d.token?.standard || '—';
-  $('tSymbol').textContent        = d.token?.symbol || '—';
-  $('tDecimals').textContent      = d.token?.decimals ?? '—';
-  $('tSupply').textContent        = d.token?.totalSupply != null ? fmtNum(d.token.totalSupply, 0) : '—';
-  $('tCirculating').textContent   = d.token?.circulating != null ? fmtNum(d.token.circulating, 0) : '—';
-  $('tMcap').textContent          = d.token?.marketCap != null ? '$' + fmtNum(d.token.marketCap, 0) : '—';
+<!-- SECTION 6 -->
+<section>
+<h2>6. Networking for Data Scientists</h2>
 
-  if (!d.verified) $('verifiedBadge').style.display = 'none';
-  if (d.chain) $('chainTag').textContent = d.chain;
-}
+<ul>
+<li>Connect with AI & Data professionals</li>
+<li>Join Data Science LinkedIn groups</li>
+<li>Share project updates weekly</li>
+<li>Post learning progress</li>
+</ul>
 
-async function loadTransactions() {
-  loaded.transactions = true;
-  const r = await api(CONFIG.endpoints.transactions(ADDRESS));
-  const rows = r?.data || r?.transactions || [];
-  $('txCount').textContent = r?.total ?? rows.length;
-  $('txPaging').textContent = rows.length ? `Showing ${rows.length} of ${r?.total ?? rows.length}` : '';
-  if (!rows.length) { $('txBody').innerHTML = '<tr><td colspan="9"><div class="empty-state">No transactions found</div></td></tr>'; return; }
-  $('txBody').innerHTML = rows.map(tx => {
-    const isOut = (tx.from || '').toLowerCase() === ADDRESS.toLowerCase();
-    return `<tr>
-      <td><a class="hash" href="#">${shorten(tx.hash)}</a></td>
-      <td><span class="method-pill">${tx.method || 'Transfer'}</span></td>
-      <td><a href="#">${fmtNum(tx.blockNumber, 0)}</a></td>
-      <td>${timeAgo(tx.timestamp)}</td>
-      <td><a href="?address=${tx.from}">${shorten(tx.from)}</a></td>
-      <td><span class="dir ${isOut ? 'out' : 'in'}">${isOut ? 'OUT' : 'IN'}</span></td>
-      <td><a href="?address=${tx.to}">${shorten(tx.to)}</a></td>
-      <td>${fmtNum(tx.value)} MSC</td>
-      <td><span class="status ${tx.status === 'success' || tx.status === 1 ? 'ok' : 'fail'}">${tx.status === 'success' || tx.status === 1 ? 'Success' : 'Failed'}</span></td>
-    </tr>`;
-  }).join('');
-}
+</section>
 
-async function loadTransfers() {
-  loaded.holders = true;
-  const r = await api(CONFIG.endpoints.transfers(ADDRESS));
-  const rows = r?.data || r?.transfers || [];
-  $('holderCount').textContent = r?.total ?? rows.length;
-  if (!rows.length) { $('holderBody').innerHTML = '<tr><td colspan="7"><div class="empty-state">No token transfers found</div></td></tr>'; return; }
-  $('holderBody').innerHTML = rows.map(tr => {
-    const isOut = (tr.from || '').toLowerCase() === ADDRESS.toLowerCase();
-    return `<tr>
-      <td><a class="hash" href="#">${shorten(tr.hash)}</a></td>
-      <td>${timeAgo(tr.timestamp)}</td>
-      <td><a href="?address=${tr.from}">${shorten(tr.from)}</a></td>
-      <td><span class="dir ${isOut ? 'out' : 'in'}">${isOut ? 'OUT' : 'IN'}</span></td>
-      <td><a href="?address=${tr.to}">${shorten(tr.to)}</a></td>
-      <td>${fmtNum(tr.amount)}</td>
-      <td>${tr.tokenSymbol || '—'}</td>
-    </tr>`;
-  }).join('');
-}
+<!-- SECTION 7 -->
+<section>
+<h2>7. Practical Activity</h2>
 
-async function loadAbi() {
-  loaded.contract = true;
-  const r = await api(CONFIG.endpoints.abi(ADDRESS));
-  const abi = Array.isArray(r) ? r : (r?.abi || []);
-  const fns = abi.filter(x => x.type === 'function');
-  if (!fns.length) { $('funcList').innerHTML = '<div class="empty-state">ABI not available</div>'; return; }
-  $('funcList').innerHTML = fns.map((f, i) => {
-    const isRead = f.stateMutability === 'view' || f.stateMutability === 'pure' || f.constant;
-    const inputs = (f.inputs || []).map(inp => `
-      <label>${inp.name || '(unnamed)'} <span style="color:var(--ink-mute);">${inp.type}</span></label>
-      <input type="text" placeholder="${inp.type}" data-fn="${i}" data-arg="${inp.name || inp.type}" />
-    `).join('');
-    return `<div class="func-item" data-idx="${i}">
-      <div class="func-header">
-        <span class="idx">${String(i+1).padStart(2,'0')}</span>
-        <span class="fname">${f.name}(${(f.inputs||[]).map(x=>x.type).join(', ')})</span>
-        <span class="ftype ${isRead ? 'read' : 'write'}">${isRead ? 'Read' : 'Write'}</span>
-      </div>
-      <div class="func-body">
-        ${inputs || '<div style="color:var(--ink-mute);font-size:12px;margin-bottom:10px;">No parameters</div>'}
-        <button class="btn btn-primary" data-execute="${i}">${isRead ? 'Query' : 'Execute'}</button>
-        <div class="result" style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-dim);"></div>
-      </div>
-    </div>`;
-  }).join('');
-  document.querySelectorAll('.func-header').forEach(h =>
-    h.addEventListener('click', () => h.parentElement.classList.toggle('open'))
-  );
-}
+<ul>
+<li>Create LinkedIn Profile</li>
+<li>Add 3 Data Science Projects</li>
+<li>Upload GitHub & Kaggle links</li>
+<li>Connect with 10 professionals</li>
+</ul>
 
-async function loadSource() {
-  loaded.source = true;
-  const r = await api(CONFIG.endpoints.source(ADDRESS));
-  if (!r || !r.source) { $('sourceCode').textContent = 'Source not available or contract not verified.'; return; }
-  $('sourceFilename').textContent = r.filename || 'Contract.sol';
-  $('sourceCompiler').textContent = r.compiler || '';
-  const src = r.source
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/\b(pragma|contract|function|returns?|public|private|internal|external|view|pure|payable|memory|storage|calldata|mapping|address|uint\d*|int\d*|bool|string|bytes\d*|event|emit|require|if|else|for|while|import|using|is|new|this|modifier)\b/g, '<span class="kw">$1</span>')
-    .replace(/(\/\/.*)/g, '<span class="com">$1</span>')
-    .replace(/("[^"]*")/g, '<span class="str">$1</span>')
-    .replace(/\b(\d+)\b/g, '<span class="num">$1</span>');
-  $('sourceCode').innerHTML = src;
-}
+</section>
 
-async function loadEvents() {
-  loaded.events = true;
-  const r = await api(CONFIG.endpoints.events(ADDRESS));
-  const logs = r?.data || r?.events || [];
-  if (!logs.length) { $('logList').innerHTML = '<div class="empty-state" style="background:var(--bg-1);border:1px solid var(--line);border-radius:10px;">No events emitted yet</div>'; return; }
-  $('logList').innerHTML = logs.map(l => `
-    <div class="log-item">
-      <div class="log-head">
-        <span>Block <a href="#">${fmtNum(l.blockNumber, 0)}</a> · Txn <a class="hash" href="#">${shorten(l.txHash)}</a></span>
-        <span>${timeAgo(l.timestamp)}</span>
-      </div>
-      <div class="log-name">${l.name || 'Anonymous'}(${(l.params||[]).map(p=>p.type).join(', ')})</div>
-      <div class="log-data">
-        ${(l.params || []).map(p => `<div><span class="k">${p.name}:</span> ${p.value}</div>`).join('')}
-      </div>
-    </div>
-  `).join('');
-}
+<!-- SECTION 8 -->
+<section>
+<h2>8. Key Takeaways</h2>
 
-/* ---------- Kick off ---------- */
-$('footerYear').textContent = new Date().getFullYear();
-loadContract();
-</script>
+<div class="highlight">
+<ul>
+<li>Build a strong LinkedIn profile</li>
+<li>Show real-world projects</li>
+<li>Stay active & consistent</li>
+<li>Network regularly</li>
+</ul>
+</div>
+
+</section>
+
+</div>
+
+<div class="footer">
+<h2>🎓 Lecture Complete</h2>
+<p>Start your Data Science career today 🚀</p>
+</div>
+
+</div>
 
 </body>
 </html>
