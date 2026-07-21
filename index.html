@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical data science career, portfolio, and final-project workshop by Sohail Ahmed.">
+  <title>Data Science Career & Project Workshop</title>
+  <style>
+    :root { --ink:#172033; --muted:#61708a; --paper:#f7f9fc; --white:#fff; --blue:#2563eb; --cyan:#0891b2; --line:#dfe6f0; --dark:#0b1220; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    a { color:inherit; }
+    .wrap { width:min(1120px,calc(100% - 32px)); margin:auto; }
+    nav { display:flex; justify-content:space-between; align-items:center; min-height:72px; }
+    .brand { font-weight:850; text-decoration:none; letter-spacing:-.02em; }
+    .nav-links { display:flex; gap:24px; list-style:none; margin:0; padding:0; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-weight:650; }
+    .hero { color:var(--white); background:linear-gradient(125deg,var(--dark),#163b78); border-radius:24px; padding:clamp(38px,7vw,76px); margin:20px 0 64px; box-shadow:0 24px 70px #17203325; }
+    .eyebrow { color:#67e8f9; font-size:.78rem; font-weight:850; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { max-width:850px; margin:14px 0 20px; font-size:clamp(2.45rem,6vw,4.8rem); line-height:1.04; letter-spacing:-.05em; }
+    .lead { max-width:740px; color:#cad8ed; font-size:1.15rem; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .button { padding:12px 18px; border:1px solid #ffffff45; border-radius:9px; text-decoration:none; font-weight:760; }
+    .primary { background:#fff; color:var(--dark); border-color:#fff; }
+    section { padding:56px 0; scroll-margin-top:20px; }
+    h2 { margin:0 0 8px; font-size:clamp(1.8rem,4vw,2.75rem); letter-spacing:-.035em; }
+    .section-copy { max-width:760px; margin:0 0 28px; color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { padding:24px; border:1px solid var(--line); border-radius:14px; background:var(--white); box-shadow:0 8px 24px #1720330a; }
+    .card h3 { margin:0 0 10px; font-size:1.1rem; }
+    .card p,.card li { color:var(--muted); }
+    .card ul { margin:0; padding-left:20px; }
+    .formula { margin:28px 0; padding:22px; border-left:4px solid var(--blue); background:#eaf1ff; border-radius:0 12px 12px 0; font-size:1.08rem; }
+    .checklist { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; list-style:none; padding:0; }
+    .checklist li { padding:16px 18px; background:#fff; border:1px solid var(--line); border-radius:10px; }
+    .checklist li::before { content:"✓"; color:var(--cyan); font-weight:900; margin-right:10px; }
+    footer { margin-top:55px; padding:30px 0 42px; border-top:1px solid var(--line); color:var(--muted); display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width:800px) { .grid,.checklist { grid-template-columns:1fr; } .nav-links { display:none; } footer { flex-direction:column; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#top">DATA SCIENCE WORKSHOP</a>
+      <ul class="nav-links"><li><a href="#profile">Profile</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#project">Final project</a></li><li><a href="#activity">Activity</a></li></ul>
+    </nav>
+
+    <main id="top">
+      <header class="hero">
+        <div class="eyebrow">Career readiness · Portfolio · Project planning</div>
+        <h1>Turn data-science skills into a professional story.</h1>
+        <p class="lead">A practical workshop for building a credible LinkedIn presence, presenting technical projects clearly, and preparing an achievable final-project proposal.</p>
+        <div class="actions"><a class="button primary" href="#profile">Start workshop</a><a class="button" href="Final_Project_Kickoff_Lecture.docx">Download project lecture</a></div>
+      </header>
+
+      <section id="profile">
+        <div class="eyebrow">01 · Professional profile</div>
+        <h2>Present your value clearly</h2>
+        <p class="section-copy">A strong profile connects your target role, core tools, evidence of work, and the type of problems you can solve.</p>
+        <div class="formula"><strong>Headline formula:</strong> Target Role + Core Skills + Value You Create<br><em>Example: Data Scientist | Python, SQL & Machine Learning | Turning Data into Actionable Decisions</em></div>
+        <div class="grid">
+          <article class="card"><h3>Professional identity</h3><p>Use a clear photo, focused headline, relevant location, and accurate availability.</p></article>
+          <article class="card"><h3>About section</h3><p>Explain your experience, strongest tools, preferred problems, and evidence of impact.</p></article>
+          <article class="card"><h3>Skills and evidence</h3><p>Prioritize skills demonstrated by projects instead of adding long, unsupported keyword lists.</p></article>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <div class="eyebrow">02 · Project portfolio</div>
+        <h2>Show the complete problem-solving process</h2>
+        <p class="section-copy">Recruiters and collaborators need to understand the problem, your decisions, the result, and exactly what you contributed.</p>
+        <div class="grid">
+          <article class="card"><h3>Problem and data</h3><ul><li>Define the real-world question</li><li>Cite the dataset source</li><li>Document quality limitations</li></ul></article>
+          <article class="card"><h3>Method and evaluation</h3><ul><li>Explain preprocessing choices</li><li>Compare a baseline and model</li><li>Use an appropriate metric</li></ul></article>
+          <article class="card"><h3>Result and reflection</h3><ul><li>Report measurable outcomes</li><li>State your contribution</li><li>Discuss limitations and next steps</li></ul></article>
+        </div>
+      </section>
+
+      <section id="project">
+        <div class="eyebrow">03 · Final-project kickoff</div>
+        <h2>Choose a focused, achievable project</h2>
+        <p class="section-copy">Start with a useful question, confirm that appropriate data exists, choose a measurable goal, and reduce the scope until it fits the available time.</p>
+        <ul class="checklist">
+          <li>Select a domain you understand</li><li>Write one clear problem statement</li><li>Verify the dataset and license</li><li>Define a baseline and success metric</li><li>Plan cleaning, EDA, and modeling</li><li>Identify risks, limits, and deliverables</li>
+        </ul>
+      </section>
+
+      <section id="activity">
+        <div class="eyebrow">04 · Practical activity</div>
+        <h2>Complete these workshop deliverables</h2>
+        <div class="grid">
+          <article class="card"><h3>Profile review</h3><p>Write a targeted headline and a concise About section supported by real skills and projects.</p></article>
+          <article class="card"><h3>Featured project</h3><p>Publish one clean GitHub project with a README, screenshots, setup instructions, results, and limitations.</p></article>
+          <article class="card"><h3>Project pitch</h3><p>Prepare a short proposal covering the problem, dataset, method, metric, outcome, and delivery plan.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>Created by Sohail Ahmed · Sr. Data Science & Web3 Engineer</span><span>Career workshop · Final-project planning</span></footer>
+  </div>
+</body>
+</html>
